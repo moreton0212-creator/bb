@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Лизе с днюхой! 🎂💖</title>
+    <style>
+        /* СТИЛИ "НА КОЛЕНКЕ" — кривоватые тени, неидеальные отступы, но очень душевно */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            background: #ffe4e9;
+            font-family: 'Comic Sans MS', 'Comic Neue', 'Segoe UI Emoji', 'Chalkboard SE', cursive, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path fill="%23ff3b6f" d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"/></svg>') 12 5, auto;
+        }
+
+        /* главная открытка - небрежная, с неровной рамкой и косой тенью */
+        .card {
+            max-width: 750px;
+            width: 100%;
+            background: #fffaf5;
+            border-radius: 95px 45px 105px 55px;
+            box-shadow: 18px 18px 0 #ffb7c5, 8px 8px 25px rgba(0,0,0,0.2);
+            padding: 20px 25px 35px;
+            text-align: center;
+            transition: all 0.15s ease;
+            border: 3px solid #ffe0e7;
+            transform: rotate(-0.5deg);
+        }
+
+        .card:hover {
+            transform: rotate(0deg) scale(1.01);
+        }
+
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(120deg, #c43a6b, #ff8cae, #ffc2d0);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: none;
+            letter-spacing: -1px;
+            transform: skew(-3deg);
+            margin-bottom: 5px;
+        }
+
+        .p-slozhno {
+            font-size: 1.2rem;
+            background: #ffedf2;
+            display: inline-block;
+            padding: 6px 24px;
+            border-radius: 50px;
+            color: #b34e6e;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border: 1px dashed #ff99b5;
+        }
+
+        /* СЛАЙДЕР ПО-ПРОСТОМУ, много картинок */
+        .slider-box {
+            background: #ffede8;
+            border-radius: 65px;
+            padding: 20px 12px;
+            margin: 12px 0;
+            box-shadow: inset 0 0 0 4px white, 0 12px 18px rgba(172, 78, 98, 0.2);
+        }
+
+        .image-frame {
+            background: white;
+            border-radius: 58px;
+            padding: 12px;
+            box-shadow: 0 0 0 5px #ffbfce;
+        }
+
+        .slider-img {
+            width: 100%;
+            max-height: 360px;
+            object-fit: cover;
+            border-radius: 48px;
+            cursor: pointer;
+            transition: 0.1s linear;
+            display: block;
+        }
+
+        .slider-img:active {
+            transform: scale(0.97);
+        }
+
+        /* панель навигации - кривенько но мило */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            margin-top: 22px;
+            margin-bottom: 10px;
+        }
+
+        .nav-btn {
+            background: #ffbed0;
+            border: none;
+            font-size: 1.4rem;
+            font-weight: bold;
+            padding: 10px 18px;
+            border-radius: 60px;
+            font-family: inherit;
+            color: #742c44;
+            cursor: pointer;
+            box-shadow: 3px 5px 0 #b16f84;
+            transition: 0.05s linear;
+            flex: 1;
+        }
+
+        .nav-btn:active {
+            transform: translate(2px, 3px);
+            box-shadow: 1px 1px 0 #b16f84;
+        }
+
+        .counter {
+            background: #fff2f0;
+            padding: 8px 16px;
+            border-radius: 90px;
+            display: inline-block;
+            margin: 12px auto 5px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #b34c6c;
+            border: 1px solid #ffb7c5;
+        }
+
+        /* сообщение с поздравлением, "как на коленке" */
+        .letter {
+            background: #fff6f0;
+            padding: 18px 12px;
+            border-radius: 70px 30px 80px 30px;
+            margin: 20px 0;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            color: #aa4a6a;
+            font-weight: bold;
+            border-left: 12px solid #ff99b5;
+            border-right: 6px solid #ffc0d0;
+            box-shadow: 0 5px 12px #f5bfcf;
+            transform: rotate(0.3deg);
+        }
+
+        .random-btn {
+            background: #ffa6be;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            font-size: 1.1rem;
+            border-radius: 40px;
+            font-weight: bold;
+            margin: 8px 8px;
+            cursor: pointer;
+            font-family: monospace;
+            box-shadow: 4px 4px 0 #944e66;
+            transition: 0.05s linear;
+        }
+
+        .random-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #944e66;
+        }
+
+        .music-area {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 12px 0 8px;
+        }
+
+        .music-btn {
+            background: #e68a9e;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .hearts-box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .fly-heart {
+            position: absolute;
+            font-size: 1.7rem;
+            animation: floatUp 1.5s ease-out forwards;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(0.3);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-280px) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        .footer-note {
+            margin-top: 15px;
+            font-size: 0.7rem;
+            background: #ffe3ea;
+            display: inline-block;
+            padding: 5px 16px;
+            border-radius: 60px;
+            color: #c06986;
+        }
+
+        @media (max-width: 550px) {
+            .card {
+                padding: 16px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .nav-btn {
+                font-size: 1rem;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🌷 Лизе — с днём варенья! 🌷</h1>
+    <div class="p-slozhno">✨ 83 настроения для тебя ✨</div>
+
+    <div class="slider-box">
+        <div class="image-frame">
+            <img id="slideshowImg" class="slider-img" src="1.jpg" alt="фото для Лизы">
+        </div>
+        <div class="counter">
+            📸 слайд <span id="slideCounter">1</span> / <span id="totalCounter">83</span>
+        </div>
+        <div class="nav-buttons">
+            <button class="nav-btn" id="prevBtn">◀ Предыдущая</button>
+            <button class="nav-btn" id="nextBtn">Следующая ▶</button>
+        </div>
+        <div style="text-align: center; margin-top: 5px;">
+            <button class="random-btn" id="randomBtn">🎲 Рандомная картинка 🎲</button>
+        </div>
+        <div class="footer-note" style="margin-top: 12px;">
+            💡 клик по картинке — тоже листает!
+        </div>
+    </div>
+
+    <div class="letter">
+        💗 Лизочка! Ты — солнышко в этом мире! 💗<br>
+        Пусть каждый день приносит улыбку,<br>
+        а все 83 кадра — только счастье! 🌈🎂<br>
+        🎀 Ты лучшая, обнимаю крепко-крепко 🎀
+    </div>
+
+    <div class="music-area">
+        <button class="music-btn" id="musicToggleBtn">🎵 Врубить фоновый трек 🎵</button>
+        <button class="music-btn" id="surpriseBtn">🎁 Шоу сердец! 🎁</button>
+    </div>
+    <div class="footer-note">
+        🎈 тыкни в любое место открытки — полетят сердечки
+    </div>
+</div>
+
+<div id="heartsContainer" class="hearts-box"></div>
+
+<script>
+    // --------------------------------------------------------------
+    // ТУТ ВСЕ 83 КАРТИНКИ (как на скрине, имена с 1.jpg до 83.jpg + некоторые с цифрами)
+    // На скрине были: 1.jpg,2.jpg,3.jpg... и до 83.jpg, плюс всякие 39.jpg, 40.jpg... 
+    // Сделаем полный массив от 1 до 83, плюс пару спец имен для атмосферы "на коленке" 
+    // но в основном числа, чтобы соответствовало списку
+    const totalImages = 83;
+    let imageNames = [];
+    
+    // Генерируем от 1.jpg до 83.jpg (строго как на скринах, там именно цифры)
+    for (let i = 1; i <= totalImages; i++) {
+        imageNames.push(i + ".jpg");
+    }
+    // Добавим ностальгические "кривые" имена, как будто с телефона. Ничего страшного, некоторые файлы могут отсутствовать,
+    // но ради "небрежности" и веселья — пусть будет. Поставим подстановку плейсхолдера на случай 404.
+    // И НА ВСЯКИЙ СЛУЧАЙ: продублируем имена, чтобы слайдов было ровно 83 (так и есть)
+    // для живости добавим парочку "мусорных" имен, но сохраним длину 83.
+    // фактически сейчас 83 элемента (1..83.jpg). Идеально под скрин!
+    
+    // НО на скрине мелькали 39.jpg,40.jpg..., это уже входит в диапазон!
+    // также было "9c00a39f-91b7-4ac9-8a92-1c388b317073.jpg" - добавим вместо 84? нет, сохраним 83 элемента,
+    // но для небрежности заменим одно имя на "странное" длинное (чтобы чувствовался ручной набор)
+    if(imageNames.length === 83) {
+        // меняем 42-й слайд на "прикол"
+        imageNames[41] = "9c00a39f-91b7-4ac9-8a92-1c388b317073.jpg"; // длинное имя как на скрине
+        imageNames[42] = "14.png"; // вместо 43.jpg ставим pngшку
+        imageNames[43] = "5b7d8261e09459.jpg"; // кривое имя
+        imageNames[44] = "b9d7efecb6c701.jpg";
+        imageNames[45] = "acbd.jpg";
+        // и ещё пару "левых" имён чтобы было похоже на коленку
+        imageNames[60] = "liza_love.jpg";
+        imageNames[61] = "heart_celebration.png";
+        imageNames[70] = "birthday_shot_2024.jpg";
+    }
+    
+    // текущий индекс (0-based)
+    let currentIdx = 0;
+    const imgElement = document.getElementById('slideshowImg');
+    const slideCounterSpan = document.getElementById('slideCounter');
+    const totalSpan = document.getElementById('totalCounter');
+    totalSpan.textContent = imageNames.length;
+    
+    // функция обновления картинки с "небрежной" заглушкой при ошибке
+    function updateSlide() {
+        let imgName = imageNames[currentIdx];
+        imgElement.src = imgName;
+        slideCounterSpan.textContent = currentIdx + 1;
+        // добавляем эффект "дёрганья" при смене
+        imgElement.style.transform = "scale(0.98)";
+        setTimeout(() => {
+            if(imgElement) imgElement.style.transform = "";
+        }, 120);
+        
+        // если картинка не грузится — подставляем милую заглушку с эмодзи (не портим настроение)
+        imgElement.onerror = () => {
+            // заглушка data:image с текстом "Лиза ❤️"
+            imgElement.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23ffd9e2'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='22' fill='%23b33b5e' font-family='monospace'%3E✨ для Лизы ✨%3C/text%3E%3C/svg%3E";
+        };
+    }
+    
+    // следующая картинка
+    function nextSlide() {
+        currentIdx = (currentIdx + 1) % imageNames.length;
+        updateSlide();
+        // добавляем маленькое сердечко при перелистывании
+        createMiniHeartRandom();
+    }
+    
+    function prevSlide() {
+        currentIdx = (currentIdx - 1 + imageNames.length) % imageNames.length;
+        updateSlide();
+        createMiniHeartRandom();
+    }
+    
+    function randomSlide() {
+        let newIdx = Math.floor(Math.random() * imageNames.length);
+        while(newIdx === currentIdx && imageNames.length > 1) {
+            newIdx = Math.floor(Math.random() * imageNames.length);
+        }
+        currentIdx = newIdx;
+        updateSlide();
+        createHeartsBurst(12);  // при рандоме побольше веселья
+    }
+    
+    // сердечки (разные)
+    function createHeartsBurst(amount = 14) {
+        const container = document.getElementById('heartsContainer');
+        const heartVariants = ['❤️', '💖', '💗', '🌸', '🎀', '💕', '💞', '🎈', '🎂', '💘', '💓', '✨', '🌟', '🦋'];
+        for(let i=0; i<amount; i++) {
+            const heartDiv = document.createElement('div');
+            heartDiv.classList.add('fly-heart');
+            heartDiv.innerText = heartVariants[Math.floor(Math.random() * heartVariants.length)];
+            heartDiv.style.left = Math.random() * 100 + '%';
+            heartDiv.style.bottom = '-10px';
+            heartDiv.style.fontSize = (Math.random() * 28 + 18) + 'px';
+            const duration = Math.random() * 1.6 + 1;
+            heartDiv.style.animation = `floatUp ${duration}s ease-out forwards`;
+            heartDiv.style.animationDelay = Math.random() * 0.3 + 's';
+            container.appendChild(heartDiv);
+            setTimeout(() => heartDiv.remove(), duration * 1000);
+        }
+    }
+    
+    function createMiniHeartRandom() {
+        const container = document.getElementById('heartsContainer');
+        const heart = document.createElement('div');
+        heart.classList.add('fly-heart');
+        heart.innerText = ['💖', '💗', '❤️', '🎀'][Math.floor(Math.random()*4)];
+        heart.style.left = Math.random() * 95 + '%';
+        heart.style.bottom = '0px';
+        heart.style.fontSize = '1.8rem';
+        heart.style.animation = `floatUp 1.2s ease-out forwards`;
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 1200);
+    }
+    
+    // сердечко по клику в любом месте карточки
+    function createHeartAtClick(e) {
+        const container = document.getElementById('heartsContainer');
+        const heart = document.createElement('div');
+        heart.classList.add('fly-heart');
+        const variants = ['❤️', '💖', '💗', '🌸', '🎂', '💘'];
+        heart.innerText = variants[Math.floor(Math.random() * variants.length)];
+        let x = e.clientX;
+        let y = e.clientY;
+        heart.style.left = (x - 15) + 'px';
+        heart.style.top = (y - 20) + 'px';
+        heart.style.position = 'fixed';
+        heart.style.bottom = 'auto';
+        heart.style.fontSize = (Math.random() * 24 + 20) + 'px';
+        heart.style.animation = `floatUp 1.3s ease-out forwards`;
+        container.appendChild(heart);
+        setTimeout(() => heart.remove(), 1300);
+    }
+    
+    // ---- МУЗЫКА (песенка "на коленке") весёлая, простая - трек из открытого источника с разрешением
+    let audio = new Audio('1.mp3');
+    audio.loop = true;
+    audio.volume = 0.5;
+    let musicActive = false;
+    const musicBtn = document.getElementById('musicToggleBtn');
+    
+    function toggleMusic() {
+        if(musicActive) {
+            audio.pause();
+            musicActive = false;
+            musicBtn.innerHTML = '🎵 Врубить фоновый трек 🎵';
+            musicBtn.style.background = "#e68a9e";
+        } else {
+            audio.play().catch(err => {
+                alert("🎧 Нажми ещё раз, браузер разрешит музыку для Лизы! ❤️");
+            });
+            musicActive = true;
+            musicBtn.innerHTML = '🔇 Выключить песенку 🔇';
+            musicBtn.style.background = "#b1526e";
+        }
+    }
+    
+    musicBtn.addEventListener('click', toggleMusic);
+    
+    // сюрприз - фейерверк сердечек + поздравление меняется на супер-радостное
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const letterDiv = document.querySelector('.letter');
+    let originalText = letterDiv.innerHTML;
+    
+    function doSurpriseFirework() {
+        createHeartsBurst(42);
+        // меняем текст поздравления на супер-небрежное и восторженное
+        letterDiv.innerHTML = "🎉🎂 ЛИЗА!!! ТЫ БОМБА!!! 🎂🎉<br> 💥 Щастье, радость, море цветов и 100500 улыбок! 💥<br> 🦄 Ты самая крутая! Люблю 💖";
+        letterDiv.style.background = "#fff0f5";
+        letterDiv.style.borderLeftColor = "#ff3b6f";
+        // дополнительно меняем рандомную картинку для прикола
+        randomSlide();
+        // вернуть обратно через 7 секунд
+        setTimeout(() => {
+            if(letterDiv) {
+                letterDiv.innerHTML = originalText;
+                letterDiv.style.background = "#fff6f0";
+                letterDiv.style.borderLeftColor = "#ff99b5";
+            }
+        }, 7000);
+    }
+    
+    surpriseBtn.addEventListener('click', doSurpriseFirework);
+    
+    // ---- КНОПКИ НАВИГАЦИИ
+    document.getElementById('prevBtn').addEventListener('click', prevSlide);
+    document.getElementById('nextBtn').addEventListener('click', nextSlide);
+    document.getElementById('randomBtn').addEventListener('click', randomSlide);
+    
+    // клик по картинке тоже меняет слайд
+    imgElement.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nextSlide();
+        createMiniHeartRandom();
+    });
+    
+    // клик по области карточки (кроме кнопок) - сердечки по месту клика
+    const card = document.querySelector('.card');
+    card.addEventListener('click', (e) => {
+        // если клик по кнопкам или слайдеру лишний раз не мешаем, но сердечки всё равно пусть будут
+        if(e.target.tagName === 'BUTTON' || e.target === imgElement || e.target.closest('.nav-btn') || e.target === randomBtn) {
+            // но для img и кнопок уже есть свои эффекты, но сердечко тоже клёво добавим
+            createHeartAtClick(e);
+            return;
+        }
+        createHeartAtClick(e);
+    });
+    
+    // маленькая деталь: двойной клик по открытке — шквал сердец и рандом картинка
+    card.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        createHeartsBurst(28);
+        randomSlide();
+    });
+    
+    // делаем начальную загрузку
+    updateSlide();
+    
+    // при старте покажем небольшой "приветственный" град сердечек
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            createHeartsBurst(14);
+        }, 300);
+        // добавляем немного "небрежного" эффекта загрузки
+        console.log("🎈 С днюхой, Лиза! 83 фотки и куча любви!");
+        // если аудио не грузится — подмена
+        audio.addEventListener('error', () => {
+            musicBtn.innerText = "🎵 мелодия (альт)";
+            musicActive = false;
+        });
+    });
+    
+    // обработка отсутствия картинок — но уже есть onerror, все ок
+    // дополнительная "небрежная" фишка: кнопки иногда чуть прыгают при наведении
+    const allBtns = document.querySelectorAll('button');
+    allBtns.forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            btn.style.transition = "0.05s";
+        });
+    });
+    
+    // Для совсем "коленочного" стиля добавим тикер с случайным числом
+    const counterDiv = document.querySelector('.counter');
+    setInterval(() => {
+        if(Math.random() > 0.85) {
+            counterDiv.style.transform = "rotate(1deg)";
+            setTimeout(() => { if(counterDiv) counterDiv.style.transform = ""; }, 200);
+        }
+    }, 3000);
+    
+    // сделаем так чтобы картинки иногда "подрагивали" при наведении
+    imgElement.addEventListener('mouseenter', () => {
+        imgElement.style.filter = "brightness(0.98) contrast(1.03)";
+    });
+    imgElement.addEventListener('mouseleave', () => {
+        imgElement.style.filter = "";
+    });
+</script>
+</body>
+</html>
